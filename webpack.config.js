@@ -2,22 +2,19 @@ const path = require('path');
 const htmlWP = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        app: './src/index.js',
+    },
     output: {
         path: path.resolve('dist'),
-        filename: 'index_bundle.js'
+        filename: 'dist/[name].js',
     },
     module: {
         loaders: [
             {
-                test: /\.js$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
-            },
-            {
-                test: /\.jsx$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
+                test: /\.jsx?$/,
+                loaders: ['babel-loader', 'eslint-loader', ],
+                exclude: /node_modules/,
             }
         ]
     },
@@ -30,5 +27,5 @@ module.exports = {
     ],
     watchOptions: {
         poll: true,
-    }
-}
+    },
+};

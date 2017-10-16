@@ -1,9 +1,9 @@
 {
   "name": "react-node-boilerplate",
   "version": "1.0.0",
-  "description": "A boilerplate for apps using node and react",
-  "main": "index.js",
-  "repository": "git@github.com:solo800/react-node-boilerplate.git",
+  "description": "A boilerplate with a built in virtual dev server for apps using react",
+  "main": "src/index.html",
+  "repository": "ggit@github.com:solo800/boilerplate-react-with-webpack-dev-server.git",
   "author": "Adam <adameliot1@gmail.com>",
   "license": "MIT",
   "scripts": {

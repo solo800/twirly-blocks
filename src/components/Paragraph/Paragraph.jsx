@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './paragraph.css';
+import styles from './paragraph.scss';
 
 const Paragraph = (props) => {
     return (

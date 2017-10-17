@@ -18,8 +18,8 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.scss$/,
-                loaders: ExtractTextPlugin.extract('sass-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
+                test: /\.css|\.scss/,
+                loaders: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader'),
                 exclude: /node_modules/,
             },
         ]

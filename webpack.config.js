@@ -6,8 +6,8 @@ module.exports = {
         app: './src/index.js',
     },
     output: {
-        path: path.resolve('dist'),
-        filename: 'dist/[name].js',
+        path: path.resolve('./dist'),
+        filename: '[name].js',
     },
     module: {
         loaders: [

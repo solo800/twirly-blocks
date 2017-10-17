@@ -3,4 +3,4 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 
-ReactDOM.render(<App greeting='Hello from react land. We a react band' />, document.getElementById('root'));
+ReactDOM.render(<App greeting='I am your React app, nice to meet you?' />, document.getElementById('root'));

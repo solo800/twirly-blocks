@@ -1,38 +1,36 @@
 const path = require('path');
-const HtmlWP = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: {
-        app: './src/index.js',
-    },
+    mode: 'development',
+    entry: './src/index.js',
     output: {
-        path: path.resolve('./dist'),
+        path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
     },
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.jsx?$/,
-                loaders: ['babel-loader', 'eslint-loader', ],
+                test: /\.js$/,
+                include: [path.resolve(__dirname, 'src')],
                 exclude: /node_modules/,
-            },
-            {
-                test: /\.css|\.scss/,
-                loaders: ExtractTextPlugin.extract('css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass-loader'),
-                exclude: /node_modules/,
+                use: [{
+                    loader: 'babel-loader',
+                    options: {
+                        babelrc: true,
+                        presets: ['@babel/preset-env'],
+                    }
+                }]
             },
         ]
     },
     plugins: [
-        new HtmlWP({
+        new HtmlWebpackPlugin({
+            title: 'Development from html wp plugin',
             template: './src/index.html',
-            filename: 'index.html',
-            inject: 'body',
         }),
-        new ExtractTextPlugin('styles.css'),
     ],
-    watchOptions: {
-        poll: true,
+    devServer: {
+        liveReload: true,
     },
 };

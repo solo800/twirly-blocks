@@ -12,17 +12,24 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                enforce: 'pre',
+                use: ['source-map-loader'],
+            },
+            {
+                test: /\.js$/,
                 include: [path.resolve(__dirname, 'src')],
                 exclude: /node_modules/,
-                use: [{
-                    loader: 'babel-loader',
-                    options: {
-                        babelrc: true,
-                        presets: ['@babel/preset-env'],
-                    }
-                }]
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            babelrc: true,
+                            presets: ['@babel/preset-env'],
+                        },
+                    },
+                ],
             },
-        ]
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({

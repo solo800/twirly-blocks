@@ -55,25 +55,24 @@ export default class Mino {
     }
 
     rotate(type) {
-        console.log('in mino rotate', type)
+        this.coordinates = this.getRotationCoordinates(type)
 
-        const { orientation } = this
+        this.orientation =
+            type === -90
+                ? this.backOrientationChange(this.orientation)
+                : this.forwardOrientationChange(this.orientation)
 
-        this.coordinates = this.rotator.getRotatedCoordinates({
-            orientation,
+        this.place()
+    }
+
+    getRotationCoordinates(type) {
+        return this.rotator.getRotatedCoordinates({
+            orientation: this.orientation,
             direction: type,
             name: this.tetrominoName,
             position: this.position,
             coordinates: this.coordinates,
         })
-
-        this.orientation =
-            type === -90
-                ? this.backOrientationChange(orientation)
-                : this.forwardOrientationChange(orientation)
-
-        this.remove()
-        this.makeShape({ render: true })
     }
 
     lateralMove(direction) {
@@ -104,14 +103,38 @@ export default class Mino {
 
     moveDown() {
         this.coordinates[1]++
+        this.place()
+    }
+
+    place(yOffset) {
+        if (yOffset !== undefined) {
+            const [x, y] = this.coordinates
+            this.coordinates = [x, y + yOffset]
+        }
 
         this.remove()
-
         this.makeShape({ render: true })
     }
 
     remove() {
         this.stage.removeChild(this.shape)
+    }
+
+    clear(gameSpeed) {
+        const interval = setInterval(() => {
+            const [x] = this.coordinates
+
+            if (x > 4) {
+                this.moveRight()
+            } else {
+                this.moveLeft()
+            }
+
+            if (x > 9 || x < 0) {
+                clearInterval(interval)
+                this.remove()
+            }
+        }, gameSpeed / 10)
     }
 
     render() {

@@ -83,4 +83,13 @@ const TETROMINO_COLORS = [
 
 const GAME_SIZE = 20
 
-export { TETROMINO_MAP, TETROMINO_COLORS, GAME_SIZE }
+// const GAME_LEVELS = [1000, 750, 500, 350, 250, 200, 175, 150, 125, 100]
+const GAME_LEVELS = [800]
+
+let i = 1
+while (i < 9) {
+    GAME_LEVELS.push(parseInt(GAME_LEVELS.slice(-1)[0] * 0.75))
+    i++
+}
+
+export { TETROMINO_MAP, TETROMINO_COLORS, GAME_SIZE, GAME_LEVELS }

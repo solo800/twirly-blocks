@@ -215,7 +215,6 @@ export default class {
             forward: this.forward,
             back: this.makeBackRotationTranslations(),
         }
-        console.log('this.trans', this.translations)
     }
 
     makeBackRotationTranslations() {
